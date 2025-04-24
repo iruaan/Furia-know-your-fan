@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FURIA Fan Page</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <img src="/images/furia-logo.png" alt="FURIA Logo" class="logo">
+            <nav>
+                <a href="/">Início</a>
+                <a href="/login" class="active">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="login-container">
+        <div class="login-box">
+            <h2>Entrar na FURIA Fan Page</h2>
+            <form th:action="@{/login}" method="post">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Entrar</button>
+            </form>
+            <p>Não tem uma conta? <a href="/register">Cadastre-se</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 FURIA Fan Page. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
