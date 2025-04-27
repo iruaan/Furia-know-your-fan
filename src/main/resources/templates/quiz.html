@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/quiz.css">
+    <title>Quiz FURIA</title>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="left">
+            <h1 th:text="${pergunta.pergunta}"></h1>
+            <form method="post" th:action="@{/quiz}">
+                <input type="hidden" name="perguntaIndex" th:value="${perguntaAtual}" />
+                <div class="options">
+                    <div th:each="op : ${pergunta.opcoes}">
+                        <input type="radio" name="resposta" th:id="${op}" th:value="${op}" required />
+                        <label th:for="${op}" th:text="${op}" class="option-label"></label>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Responder</button>
+            </form>
+        </div>
+        <div class="right">
+            <img th:src="@{'/images/pergunta' + ${perguntaAtual} + '.jpg'}" class="transition-img" />
+        </div>
+    </div>
+</body>
+</html>

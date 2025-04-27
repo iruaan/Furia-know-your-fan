@@ -1,0 +1,60 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0d0d0d;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .missao-container {
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  .missao-container h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .missao-container h2 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  
+  .missao-container p {
+    margin-bottom: 30px;
+    font-size: 1em;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 6px;
+  }
+  
+  button[type="submit"] {
+    background-color: #00ffff;
+    border: none;
+    color: #0d0d0d;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #00cccc;
+  }
+  

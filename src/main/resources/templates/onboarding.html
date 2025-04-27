@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding FURIA</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    .left {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem;
+      box-sizing: border-box;
+    }
+
+    .question {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .input-field {
+      width: 100%;
+      max-width: 400px;
+      padding: 1rem;
+      font-size: 1rem;
+      border: 2px solid #000;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .next-button {
+      background-color: black;
+      color: white;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin: 0.5rem;
+    }
+
+    .next-button:hover {
+      background-color: #333;
+    }
+
+    .right {
+      width: 50%;
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: opacity 0.5s ease;
+    }
+
+    .furia-logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 100px;
+    }
+
+    #boolean-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <img src="/images/furia-logo.png" alt="FURIA Logo" class="furia-logo">
+
+  <div class="left">
+    <div class="question" id="question">Qual jogo você mais acompanha?</div>
+    <input class="input-field" type="text" id="answer" placeholder="Ex: Valorant, CS, LoL...">
+    
+    <div id="boolean-buttons" style="display: none;">
+      <button class="next-button" onclick="submitBoolean(true)">Sim</button>
+      <button class="next-button" onclick="submitBoolean(false)">Não</button>
+    </div>
+    
+    <button class="next-button" id="nextBtn" onclick="nextQuestion()">Próxima</button>
+  </div>
+
+  <div class="right">
+    <img class="image" id="questionImage" src="/images/games.jpg" alt="Imagem relacionada">
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: 'Qual jogo você mais acompanha?',
+        image: '/images/games.jpg',
+        type: 'text'
+      },
+      {
+        text: 'Quem é seu jogador preferido?',
+        image: '/images/jogador.jpg',
+        type: 'text'
+      },
+      {
+        text: 'Qual seu influencer favorito?',
+        image: '/images/influencers.jpg',
+        type: 'text'
+      },
+      {
+        text: 'Você acompanha campeonatos ao vivo?',
+        image: '/images/live.jpg',
+        type: 'boolean'
+      }
+    ];
+
+    let currentQuestion = 0;
+
+    let respostas = {
+      jogoFavorito: "",
+      jogadorFavorito: "",
+      influencerFavorito: "",
+      acompanhaAoVivo: false
+    };
+
+    function renderQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById('question').textContent = q.text;
+
+      const input = document.getElementById('answer');
+      const boolBtns = document.getElementById('boolean-buttons');
+      const nextBtn = document.getElementById('nextBtn');
+
+      if (q.type === 'boolean') {
+        input.style.display = 'none';
+        nextBtn.style.display = 'none';
+        boolBtns.style.display = 'flex';
+      } else {
+        input.style.display = 'block';
+        nextBtn.style.display = 'inline-block';
+        boolBtns.style.display = 'none';
+      }
+
+      const img = document.getElementById('questionImage');
+      img.style.opacity = 0;
+      setTimeout(() => {
+        img.src = q.image;
+        img.style.opacity = 1;
+      }, 250);
+    }
+
+    function nextQuestion() {
+      const input = document.getElementById('answer');
+      const answer = input.value.trim();
+      if (!answer) return alert('Por favor, responda a pergunta.');
+
+      if (currentQuestion === 0) respostas.jogoFavorito = answer;
+      if (currentQuestion === 1) respostas.jogadorFavorito = answer;
+      if (currentQuestion === 2) respostas.influencerFavorito = answer;
+
+      input.value = '';
+      currentQuestion++;
+      if (currentQuestion >= questions.length) {
+        enviarRespostas();
+        return;
+      }
+
+      renderQuestion();
+    }
+
+    function submitBoolean(value) {
+      respostas.acompanhaAoVivo = value;
+      currentQuestion++;
+
+      if (currentQuestion >= questions.length) {
+        enviarRespostas();
+        return;
+      }
+
+      renderQuestion();
+    }
+
+    function enviarRespostas() {
+      fetch('/onboarding', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(respostas)
+      })
+      .then(response => {
+        if (response.redirected) {
+          window.location.href = response.url;
+        } else {
+          alert('Erro ao enviar respostas.');
+        }
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+        alert('Erro ao enviar respostas.');
+      });
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>

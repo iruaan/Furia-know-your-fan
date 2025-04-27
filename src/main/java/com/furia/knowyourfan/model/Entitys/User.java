@@ -30,7 +30,7 @@ public class User {
     private String nickname;
 
 
-    private Integer xp = 0; // Campo de XP adicionado, valor inicial 0
+    private Integer xp; 
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthdate;
@@ -38,7 +38,7 @@ public class User {
     private String email;
 
     private String password; // Vamos criptografar depois
-
+    
 
     public String getName() {
         return name;
@@ -82,7 +82,7 @@ public class User {
     }
 
     public Integer getXp() {
-        return xp;
+        return xp == null ? 0 : xp;
     }
 
     public void setXp(Integer xp) {

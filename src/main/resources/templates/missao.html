@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Missão FURIA</title>
+  <link rel="stylesheet" href="/css/missao.css" />
+</head>
+
+<body>
+  <div class="missao-container">
+    <h1>Missão da Semana</h1>
+    <h2>Poste no X (Twitter) com a hashtag <strong>#FuriaFan</strong></h2>
+    <p>Conclua esta missão e ganhe <strong th:text="${xpMissao != null ? xpMissao : 100}">100</strong> XP!</p> <!-- Certifique-se que xpMissao é passado corretamente -->
+
+    <form th:action="@{/missao/concluir}" method="post">
+      <input type="text" name="usuarioTwitter" placeholder="Digite seu @ do Twitter" required />
+      <button type="submit">Concluir Missão</button>
+    </form>
+
+    <div th:if="${sucesso}">
+      <p style="color: green;">Parabéns! Você concluiu a missão!</p>
+    </div>
+
+    <div th:if="${erro}">
+      <p style="color: red;">Não encontramos seu post com a hashtag. Tente novamente!</p>
+    </div>
+  </div>
+</body>
+</html>
