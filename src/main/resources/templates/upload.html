@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload de Documento</title>
+    <link rel="stylesheet" href="\css\uploadandconfirmacao.css">
+</head>
+<body>
+    <img src="/images/furia-logo.png" alt="Logo FURIA" class="logo">
+    <div class="container">
+        <h1>Upload de Documento</h1>
+        <form action="/analisar" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required><br><br>
+            <button type="submit">Analisar Documento</button>
+        </form>
+        <br>
+        <span th:text="${erro}"></span>
+    </div>
+</body>
+</html>

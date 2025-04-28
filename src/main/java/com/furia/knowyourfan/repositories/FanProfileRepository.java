@@ -9,4 +9,6 @@ import java.util.Optional;
 
 public interface FanProfileRepository extends JpaRepository<FanProfile, Long> {
     Optional<FanProfile> findByUser(User user);
+
+
 }

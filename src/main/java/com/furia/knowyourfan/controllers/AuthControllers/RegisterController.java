@@ -16,14 +16,13 @@ public class RegisterController {
     private UserService userService;
 
     @PostMapping("/register")
-    public String registerUser(@RequestParam String name, 
-                               @RequestParam String nickname, 
+    public String registerUser(
                                @RequestParam String email, 
-                               @RequestParam String password, 
-                               @RequestParam String birthDate) {
+                               @RequestParam String password
+) {
 
         // Chama o serviço para registrar o usuário
-        String result = userService.register(name, nickname, email, password, birthDate);
+        String result = userService.register(email, password);
 
         // Caso o email já esteja registrado, redireciona com erro
         if (result.equals("email-ja-cadastrado")) {

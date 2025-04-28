@@ -1,7 +1,7 @@
 package com.furia.knowyourfan.services.UserServices;
 
 
-import java.time.LocalDate;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,7 +18,7 @@ public class UserService {
   @Autowired
     private UserRepository userRepository;
 
-    public String register(@RequestParam String name, String nickname, String email, String password, String birthDate) {
+    public String register(@RequestParam  String email, String password) {
 
         // Verifica se o email já está registrado
         if (userRepository.findByEmail(email).isPresent()) {
@@ -31,11 +31,9 @@ public class UserService {
 
         // Cria um novo usuário
         User user = new User();
-        user.setName(name);
-        user.setNickname(nickname);
         user.setEmail(email);
         user.setPassword(encryptedPassword);
-        user.setBirthdate(LocalDate.parse(birthDate));
+
 
         // Salva o usuário no banco de dados
         userRepository.save(user);

@@ -17,52 +17,31 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    private String name;
-    
-    private String nickname;
-
+    private String nome;
+    private String cpf;
 
     private Integer xp; 
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate birthdate;
+    private String dataNascimento;
+
 
     private String email;
 
     private String password; // Vamos criptografar depois
     
 
-    public String getName() {
-        return name;
+
+
+    public User() {
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public User(String nome, String cpf, String dataNascimento) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-
-    public LocalDate getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
     }
 
     public String getEmail() {
@@ -89,5 +68,33 @@ public class User {
         this.xp = xp;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 }
