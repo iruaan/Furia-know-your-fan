@@ -125,6 +125,11 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .match-form button:hover {
+            background-color: #7d3cc4;
         }
         
         .match-result {
@@ -142,14 +147,35 @@
         
         .match-item {
             margin-bottom: 8px;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: #f8f9fa;
         }
         
         .match-true {
             color: #4caf50;
+            border-left: 3px solid #4caf50;
         }
         
         .match-false {
             color: #f44336;
+            border-left: 3px solid #f44336;
+        }
+
+        /* Estilos para o perfil de fã */
+        .fan-profile {
+            margin-top: 15px;
+        }
+        
+        .fan-profile-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f0f4f8;
+            border-radius: 6px;
+        }
+        
+        .fan-profile-item strong {
+            color: #9147ff;
         }
 
         /* Responsividade */
@@ -169,6 +195,27 @@
         <div class="status" th:class="${statusFã == 'Super fã de e-sports e fã da FURIA!' ? 'super' : (statusFã == 'Fã médio de e-sports.' ? 'medio' : 'iniciante')}" th:text="${statusFã}"></div>
 
         <h2>Total de Follows: <span th:text="${totalFollows}">0</span></h2>
+
+        <!-- Seção do Perfil de Fã (Onboarding) -->
+        <div class="info-card" th:if="${fanProfile != null and fanProfile.onboardingConcluido}">
+            <h2>Seu Perfil de Fã</h2>
+            <div class="fan-profile">
+                <div class="fan-profile-item" th:if="${fanProfile.jogoFavorito != null and !fanProfile.jogoFavorito.isEmpty()}">
+                    🎮 <strong>Jogo que mais acompanha:</strong> <span th:text="${fanProfile.jogoFavorito}"></span>
+                </div>
+                <div class="fan-profile-item" th:if="${fanProfile.influencerFavorito != null and !fanProfile.influencerFavorito.isEmpty()}">
+                    📺 <strong>Influencer favorito:</strong> <span th:text="${fanProfile.influencerFavorito}"></span>
+                </div>
+                <div class="fan-profile-item" th:if="${fanProfile.jogadorFavorito != null and !fanProfile.jogadorFavorito.isEmpty()}">
+                    🏆 <strong>Jogador profissional favorito:</strong> <span th:text="${fanProfile.jogadorFavorito}"></span>
+                </div>
+                <div class="fan-profile-item">
+                    <strong>Prefere assistir:</strong> 
+                    <span th:if="${fanProfile.acompanhaAoVivo}">Transmissões ao vivo 🔴</span>
+                    <span th:unless="${fanProfile.acompanhaAoVivo}">VODs/Highlights 📹</span>
+                </div>
+            </div>
+        </div>
 
         <div class="info-card">
             <h2>Times/Organizações de E-Sports e Jogos que você segue:</h2>

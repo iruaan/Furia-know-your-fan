@@ -42,6 +42,6 @@ public class FanProfileController {
         fanProfile.setOnboardingConcluido(true);
         fanProfileService.save(fanProfile);
 
-        return "redirect:/fan";
+        return "redirect:/dados";
     }
 }

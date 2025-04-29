@@ -30,7 +30,7 @@ public class RegisterController {
         }
 
         // Caso o cadastro seja bem-sucedido, redireciona para login
-        return "redirect:/login";
+        return "/login";
     }
 
 

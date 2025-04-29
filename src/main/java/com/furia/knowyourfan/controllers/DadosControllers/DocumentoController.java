@@ -27,7 +27,7 @@ public class DocumentoController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/")
+    @GetMapping("/dados")
     public String formularioUpload() {
         return "upload";  // Página de upload do arquivo
     }
