@@ -36,6 +36,7 @@ public class AuthController {
             User user = userRepository.findByEmail(email).orElse(null);
             if (user != null) {
                 request.getSession().setAttribute("user", user); // Guarda o usuário na sessão
+                
 
                 // Verifica se o onboarding está completo
                 boolean onboardingConcluido = fanProfileService.findByUser(user)

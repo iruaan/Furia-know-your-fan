@@ -1,8 +1,5 @@
 package com.furia.knowyourfan.model.Entitys;
 
-import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

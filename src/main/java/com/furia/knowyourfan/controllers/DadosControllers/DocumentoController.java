@@ -16,7 +16,7 @@ import com.furia.knowyourfan.model.Entitys.User;
 import com.furia.knowyourfan.repositories.UserRepository;
 
 import java.io.IOException;
-import java.util.Optional;
+
 
 @Controller
 public class DocumentoController {

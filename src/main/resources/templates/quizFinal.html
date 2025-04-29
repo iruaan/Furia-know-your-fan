@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <div class="left-panel">
-          <h1 th:text="'Parabéns, ' + ${user.name} + '!'">Parabéns!</h1>
+          <h1 th:text="'Parabéns, ' + ${user.nome} + '!'">Parabéns!</h1>
           <p th:text="'Você ganhou ' + ${xp} + ' XP no quiz da FURIA!'">Você ganhou XP!</p>
           <a id="tweetBtn" href="#" target="_blank">Compartilhar no Twitter 🐦</a>
         </div>
@@ -24,7 +24,7 @@
 
     <script th:inline="javascript">
         /*<![CDATA[*/
-        let userName = /*[[${user.name}]]*/ 'Fã';
+        let userName = /*[[${user.nome}]]*/ 'Fã';
         let xp = /*[[${xp}]]*/ 0;
         let tweetText = encodeURIComponent("Acabei de ganhar " + xp + " XP no quiz da @FURIA! Acesse você também! [www.site.com] 🖤🐾 #Furia");
         let tweetUrl = "https://twitter.com/intent/tweet?text=" + tweetText;

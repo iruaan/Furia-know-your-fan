@@ -46,6 +46,8 @@
 			<optional>true</optional>
 		</dependency>
 		    <dependency>
+
+
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
@@ -54,11 +56,34 @@
     <artifactId>spring-security-core</artifactId>
     <version>5.7.5</version> <!-- Ou a versão mais recente disponível -->
 </dependency>
+
+<dependency>
+    <groupId>org.jsoup</groupId>
+    <artifactId>jsoup</artifactId>
+    <version>1.17.2</version>
+</dependency>
+
+
+
+
+
+
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-webflux</artifactId>
 </dependency>
 
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20231013</version>
+</dependency>
+
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.5.13</version>
+</dependency>
 <dependency>
     <groupId>net.sourceforge.tess4j</groupId>
     <artifactId>tess4j</artifactId>

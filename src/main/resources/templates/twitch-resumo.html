@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo da Twitch</title>
+    <!-- Importação de fontes do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding: 30px;
+            background: #f4f7fc;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        h1, h2 {
+            color: #9147ff;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            font-size: 28px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        li {
+            background: #eeeeee;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .nenhum {
+            color: red;
+            font-weight: bold;
+        }
+
+        .status {
+            font-weight: 600;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .status.iniciante {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .status.medio {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        .status.super {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .info-card {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .info-card p span {
+            font-weight: bold;
+            color: #555;
+        }
+
+        /* Estilos para o formulário e resultados */
+        .match-form {
+            margin-top: 20px;
+        }
+        
+        .match-form input[type="url"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .match-form button {
+            background-color: #9147ff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .match-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            border-left: 4px solid #9147ff;
+        }
+        
+        .match-result h3 {
+            margin-top: 0;
+            color: #9147ff;
+        }
+        
+        .match-item {
+            margin-bottom: 8px;
+        }
+        
+        .match-true {
+            color: #4caf50;
+        }
+        
+        .match-false {
+            color: #f44336;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resumo da Twitch</h1>
+
+        <h2>Olá, <span th:text="${userName}">Usuário</span>!</h2>
+
+        <div class="status" th:class="${statusFã == 'Super fã de e-sports e fã da FURIA!' ? 'super' : (statusFã == 'Fã médio de e-sports.' ? 'medio' : 'iniciante')}" th:text="${statusFã}"></div>
+
+        <h2>Total de Follows: <span th:text="${totalFollows}">0</span></h2>
+
+        <div class="info-card">
+            <h2>Times/Organizações de E-Sports e Jogos que você segue:</h2>
+            <ul>
+                <th:block th:if="${#lists.isEmpty(encontrados)}">
+                    <p class="nenhum">Você não segue nenhum canal de E-Sports ou Jogos da nossa lista.</p>
+                </th:block>
+                <th:block th:each="canal : ${encontrados}">
+                    <li th:text="${canal}"></li>
+                </th:block>
+            </ul>
+        </div>
+
+        <div class="info-card">
+            <h2>Informações do Usuário:</h2>
+            <p>Nome Completo: <span th:text="${nomeCompleto}">Usuário</span></p>
+            <p>Email: <span th:text="${email}">user@example.com</span></p>
+            <p>CPF: <span th:text="${cpf}">123.456.789-00</span></p>
+            <p>Data de Nascimento: <span th:text="${dataNascimento}">01/01/1990</span></p>
+        </div>
+
+        <div class="info-card">
+            <h2>Verificar Compatibilidade</h2>
+            <form class="match-form" action="/verificar-compatibilidade" method="post">
+                <input type="hidden" name="token" th:value="${param.token}">
+                <input type="url" name="url" placeholder="Cole o link do perfil para verificar" required>
+                <button type="submit">Verificar Compatibilidade</button>
+            </form>
+            
+            <div class="match-result" th:if="${resultadoCompatibilidade != null}">
+                <h3>Resultado da Verificação</h3>
+                <p>URL analisada: <a th:href="${urlAnalisada}" th:text="${urlAnalisada}"></a></p>
+                
+                <div th:each="item : ${resultadoCompatibilidade}">
+                    <div class="match-item" th:class="${item.value} ? 'match-true' : 'match-false'">
+                        <span th:text="${item.key} + ': ' + (${item.value} ? '✅ Encontrado' : '❌ Não encontrado')"></span>
+                    </div>
+                </div>
+                
+                <p th:if="${porcentagemCompatibilidade != null}" style="margin-top: 15px; font-weight: bold;">
+                    Compatibilidade: <span th:text="${porcentagemCompatibilidade} + '%'"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

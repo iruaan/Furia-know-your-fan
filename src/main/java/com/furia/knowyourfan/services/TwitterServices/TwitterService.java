@@ -1,5 +1,6 @@
 package com.furia.knowyourfan.services.TwitterServices;
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -12,7 +13,7 @@ public class TwitterService {
 
     private final WebClient webClient;
 
-    public TwitterService(@Value("${twitter.bearer-token}") String bearerToken) {
+    public TwitterService(@Value("${twitter.bearer.token}") String bearerToken) {
         this.webClient = WebClient.builder()
                 .baseUrl("https://api.twitter.com/2")
                 .defaultHeader("Authorization", "Bearer " + bearerToken)
@@ -83,4 +84,8 @@ public class TwitterService {
             throw new RuntimeException("Erro ao verificar tweet com a hashtag.", e);
         }
     }
+
+
+
+
 }
