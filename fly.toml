@@ -1,0 +1,12 @@
+# fly.toml
+app = "know-your-fan"  # Escolha um nome único
+
+[build]
+  buildpacks = ["paketo-buildpacks/java"]  # Força o uso do buildpack Java
+
+[env]
+  PORT = "8080"  # Porta que o Spring Boot usa
+
+[http_service]
+  internal_port = 8080
+  force_https = true
