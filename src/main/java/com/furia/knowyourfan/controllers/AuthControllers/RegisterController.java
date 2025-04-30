@@ -1,15 +1,16 @@
 package com.furia.knowyourfan.controllers.AuthControllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
 
 
 
 import com.furia.knowyourfan.services.UserServices.UserService;
 
-@RestController
+@Controller
 public class RegisterController {
 
     @Autowired
@@ -30,7 +31,7 @@ public class RegisterController {
         }
 
         // Caso o cadastro seja bem-sucedido, redireciona para login
-        return "/login";
+        return "redirect:/login";
     }
 
 
