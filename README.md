@@ -113,11 +113,10 @@ twitch.client.secret=...
 
 tesseract.path=/usr/share/tessdata
 bash
-Copiar
-Editar
+
 # Execute o projeto
 ./mvnw spring-boot:run
-Acesse em: http://localhost:8080/dados
+Acesse em: http://localhost:8080/home
 
 📁 Endpoints Disponíveis
 Endpoint	Descrição
