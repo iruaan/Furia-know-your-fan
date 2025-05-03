@@ -1,7 +1,7 @@
-🎮 Know Your Fan - Projeto de Identificação e Engajamento de Fãs de eSports
+# 🎮 Know Your Fan - Projeto de Identificação e Engajamento de Fãs de eSports
 Este projeto é uma aplicação full stack com o objetivo de identificar, mapear e classificar fãs de eSports (com foco em organizações como a FURIA), oferecendo uma experiência de onboarding e coleta de dados através de múltiplas fontes como redes sociais, documentos e hábitos de interação digital.
 
-🚀 Tecnologias Utilizadas
+# 🚀 Tecnologias Utilizadas
 Java 17 + Spring Boot
 
 Thymeleaf (para renderização de páginas web)
@@ -15,7 +15,7 @@ API da Twitch
 Tesseract OCR (extração de dados de documentos)
 
 
-🧠 Funcionalidades
+# 🧠 Funcionalidades
 Coleta automática de dados pessoais a partir de documento com uso de IA (OCR).
 
 Integração com redes sociais para mapear nível de engajamento com organizações de eSports.
@@ -30,7 +30,7 @@ Validação de links/perfis de eSports usando IA para garantir relevância.
 
 Armazenamento e consulta de dados via Supabase.
 
-📌 Fluxo do Projeto
+# 📌 Fluxo do Projeto
 Cadastro e Login
 
 Endpoints: /register, /login
@@ -75,7 +75,7 @@ Exibe os fãs mais engajados do sistema
 
 Possibilidade de gamificação
 
-🛠️ Como rodar o projeto localmente
+# 🛠️ Como rodar o projeto localmente
 Pré-requisitos
 Java 17
 
